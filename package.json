@@ -1,0 +1,21 @@
+{
+  "name": "udemy_webdriverio",
+  "version": "1.0.0",
+  "description": "webdriverio framework",
+  "main": "index.js",
+  "scripts": {
+    "test": "wdio"
+  },
+  "author": "Luis Abreu",
+  "license": "ISC",
+  "devDependencies": {
+    "mocha": "^5.2.0",
+    "selenium": "^2.20.0",
+    "selenium-standalone": "^6.15.3",
+    "wdio-mocha-framework": "^0.6.4",
+    "webdriverio": "^4.13.2"
+  },
+  "dependencies": {
+    "wdio-selenium-standalone-service": "0.0.12"
+  }
+}
