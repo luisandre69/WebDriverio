@@ -1,8 +1,0 @@
-#run server
-./node_modules/.bin/selenium-standalone start
-
-#run test
-./node_modules/.bin/wdio
-
-#add additional logging to the console window
-npm test -- --logLevel=verbose
