@@ -1,3 +1,4 @@
+//Section 17 (49/50)
 describe('Test Checkbox Buttons Page', function() {
 	browser.url("Dropdown-Checkboxes-RadioButtons/index.html");
 		browser.setViewportSize({
