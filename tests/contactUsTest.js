@@ -1,8 +1,15 @@
+var request = require('sync-request');
+
+
 beforeEach(function () {
     browser.url('/Contact-Us/contactus.html');
 });
 
 describe('Test Contact Us fomr WebdriverUni', function () {
+    var res = request('GET','http://jsonplaceholder.typicode.com/post/1/comments');
+
+    var contactusDetails = JSON.parse(res.getBody().toString('utf8'))
+
     beforeEach(function () {
         console.log('Inside the describe block!');
     });
