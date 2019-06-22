@@ -1,20 +1,5 @@
 var request = require('sync-request');
 
-browser.addCommand("submitDataViaContactUsForm", function (firstName, lastName, emailAddress, comments) {
-    if (firstName) {
-        browser.setValue("[name='first_name']", firstName);
-    }
-    if (lastName) {
-        browser.setValue("[name='last_name']", lastName);
-    }
-    if (emailAddress) {
-        browser.setValue("[name='email']", emailAddress);
-    }
-    if (comments) {
-        browser.setValue("[name='message']", comments);
-    }
-    browser.click("[type='submit']");
-})
 
 beforeEach(function () {
     browser.url('/Contact-Us/contactus.html');
@@ -22,12 +7,43 @@ beforeEach(function () {
 
 describe('Test Contact Us form WebdriverUni', function () {
     var res = request('GET', 'http://jsonplaceholder.typicode.com/posts/1/comments');
-
     var contactusDetails = JSON.parse(res.getBody().toString('utf8'));
 
-    beforeEach(function () {
-        console.log('Inside the describe block!');
-    })
+    var firstNameSelector = "[name='first_name']";
+    var lastNameSelector = "[name='last_name']";
+    var emailAddressSelector = "[name='email']";
+    var commentsSelector = "textarea";
+    var sucessfullSubmissionSelector = "#contact_reply h1";
+    var unsuccessfulSubmissionSelector = "body";
+    var submitButtonSelector = "[type='submit']";
+
+    function setFirstName(firstName) {
+        return browser.setValue(firstNameSelector, firstName);
+    }
+
+    function setlastName(lastName) {
+        return browser.setValue(lastNameSelector, lastName);
+    }
+
+    function setEmailAddress(emailAddress) {
+        return browser.setValue(emailAddressSelector, emailAddress);
+    }
+
+    function setComments(comments) {
+        return browser.setValue(commentsSelector, comments);
+    }
+
+    function clickSubmitButton() {
+        return browser.click(submitButtonSelector);
+    }
+
+    function confirmSuccessfulSubmission() {
+        var validateSubmissionHeader = browser.waitUntil(function () {
+            return browser.getText(sucessfullSubmissionSelector) == 'Thank You for your Message!';
+        }, 3000)
+        expect(validateSubmissionHeader, 'Successful submission Message does not Exist!').to.be.true;
+    }
+
 
     contactusDetails.forEach(function (contactDetail) {
         it('Should be able to submit a successful submission via contact us form', function (done) {
