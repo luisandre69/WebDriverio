@@ -6,40 +6,38 @@ beforeEach(function () {
 describe('Test Contact Us form WebdriverUni', function () {
 
     function setFirstName(firstName) {
-        return browser.setValue(firstNameSelector, firstName);
+        return ContactUs_Page.firstName.setValue(firstName);
     }
 
     function setLastName(lastName) {
-        return browser.setValue(lastNameSelector, lastName);
+        return ContactUs_Page.lastName.setValue(lastName);
     }
 
     function setEmailAddress(emailAddress) {
-        return browser.setValue(emailAddressSelector, emailAddress);
+        return ContactUs_Page.emailAddress.setValue(emailAddress);
     }
 
     function setComments(comments) {
-        return browser.setValue(commentsSelector, comments);
+        return ContactUs_Page.comments.setValue(comments);
     }
 
     function clickSubmitButton() {
-        return browser.click(submitButtonSelector);
+        return ContactUs_Page.submitButton.click();
     }
 
     function confirmSuccessfulSubmission() {
         var validateSubmissionHeader = browser.waitUntil(function () {
-            return browser.getText(successfulSubmissionSelector) == 'Thank You for your Message!'
+            return ContactUs_Page.successfulSubmissionHeader.getText() == 'Thank You for your Message!'
         }, 3000)
         expect(validateSubmissionHeader, 'Successful Submission Message does not Exist!').to.be.true;
     }
 
     function confirmUnsuccessfulSubmission() {
         var validateSubmissionHeader = browser.waitUntil(function () {
-            return browser.getText(unsuccessfulSubmissionSelector) == 'Error: all fields are required'
+            return ContactUs_Page.unsuccessfulSubmissionHeader.getText() == 'Error: all fields are required'
         }, 3000)
-        expect(browser.getText(unsuccessfulSubmissionSelector)).to.include('Error: all fields are required');
+        expect(ContactUs_Page.unsuccessfulSubmissionHeader.getText()).to.include('Error: all fields are required');
     }
-
-
 
     contactusDetails.forEach(function (contactDetail) {
         it('Should be able to submit a successful submission via contact us form', function (done) {
@@ -52,7 +50,6 @@ describe('Test Contact Us form WebdriverUni', function () {
         });
     });
 
-
     it('Should not be able to submit a successful submission via contact us form as all fields are required', function (done) {
         setFirstName('Mike');
         setLastName('Woods');
@@ -60,7 +57,6 @@ describe('Test Contact Us form WebdriverUni', function () {
         clickSubmitButton();
         confirmUnsuccessfulSubmission();
     });
-
 
     it('Should not be able to submit a successful submission via contact us form as all fields are required', function (done) {
         setFirstName('Sarah');
