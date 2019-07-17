@@ -1,20 +1,9 @@
-var request = require('sync-request');
-
+var ContactUs_Page = require("./PageObjects/ContactUs_Page.js");
 beforeEach(function () {
     browser.url('/Contact-Us/contactus.html');
 })
 
 describe('Test Contact Us form WebdriverUni', function () {
-    var res = request('GET', 'http://jsonplaceholder.typicode.com/posts/1/comments');
-    var contactusDetails = JSON.parse(res.getBody().toString('utf8'));
-
-    var firstNameSelector = "[name='first_name']";
-    var lastNameSelector = "[name='last_name']";
-    var emailAddressSelector = "[name='email']";
-    var commentsSelector = "textarea";
-    var successfulSubmissionSelector = "#contact_reply h1";
-    var unsuccessfulSubmissionSelector = "body";
-    var submitButtonSelector = "[type='submit']";
 
     function setFirstName(firstName) {
         return browser.setValue(firstNameSelector, firstName);
