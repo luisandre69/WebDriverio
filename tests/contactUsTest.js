@@ -1,4 +1,5 @@
-var ContactUs_Page = require("./PageObjects/ContactUs_Page.js");
+var ContactUs_Page = require("../PageObjects/ContactUs_Page.js");
+
 beforeEach(function () {
     browser.url('/Contact-Us/contactus.html');
 })
@@ -39,15 +40,13 @@ describe('Test Contact Us form WebdriverUni', function () {
         expect(ContactUs_Page.unsuccessfulSubmissionHeader.getText()).to.include('Error: all fields are required');
     }
 
-    contactusDetails.forEach(function (contactDetail) {
-        it('Should be able to submit a successful submission via contact us form', function (done) {
-            setFirstName('joe');
-            setLastName('Blogs');
-            setEmailAddress(contactDetail.email);
-            setComments(contactDetail.body);
-            clickSubmitButton();
-            confirmSuccessfulSubmission();
-        });
+    it('Should be able to submit a successful submission via contact us form', function (done) {
+        setFirstName('joe');
+        setLastName('Blogs');
+        setEmailAddress("joe_blogs123@outlook.com");
+        setComments("How are you?");
+        clickSubmitButton();
+        confirmSuccessfulSubmission();
     });
 
     it('Should not be able to submit a successful submission via contact us form as all fields are required', function (done) {
