@@ -92,3 +92,6 @@ errorShots/
 
 #reports folder
 reports/
+
+#allure
+allure-report/
