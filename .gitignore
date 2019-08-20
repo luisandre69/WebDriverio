@@ -89,3 +89,9 @@ typings/
 
 #errorShots Local files
 errorShots/
+
+#reports folder
+reports/
+
+#allure
+allure-report/

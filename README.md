@@ -14,3 +14,7 @@ npm test -- --logLevel=verbose
 #run actual tests
 
 npm test -- --spec test.js
+
+#allure test
+allure generate location
+allure generate location --clean //cleans the folder
