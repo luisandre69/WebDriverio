@@ -20,6 +20,7 @@
   },
   "dependencies": {
     "lodash": "^4.17.14",
+    "wdio-json-reporter": "^0.4.0",
     "wdio-selenium-standalone-service": "0.0.12"
   }
 }

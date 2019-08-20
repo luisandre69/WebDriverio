@@ -1,14 +1,15 @@
 var baseUrl;
 
-if (process.env.SERVER === 'prod') {
-    baseUrl = 'https://www.google.com';
-} else {
-    baseUrl = "http://www.webdriveruniversity.com";
-}
+if(process.env.SERVER === 'prod') {
+	baseUrl = 'https://www.google.com';
+	} else {
+		baseUrl= "http://www.webdriveruniversity.com";
+	}
 
-var timeout = process.env.DEBUG ? 99999999 : 10000;
+    var timeout = process.env.DEBUG ? 99999999 : 10000;
+
 exports.config = {
-
+    
     //
     // ==================
     // Specify Test Files
@@ -120,7 +121,7 @@ exports.config = {
     // Services take over a specific job you don't want to take care of. They enhance
     // your test setup with almost no effort. Unlike plugins, they don't add new
     // commands. Instead, they hook themselves up into the test process.
-    services: ['selenium-standalone'],
+     services: ['selenium-standalone'],
     // Framework you want to run your specs with.
     // The following are supported: Mocha, Jasmine, and Cucumber
     // see also: http://webdriver.io/guide/testrunner/frameworks.html
@@ -132,14 +133,16 @@ exports.config = {
     // Test reporter for stdout.
     // The only one supported by default is 'dot'
     // see also: http://webdriver.io/guide/reporters/dot.html
-    reporters: ['dot', 'junit'],
-    
-    reporterOptions:{
-        junit:{
-            outputDir: './reports/junit-reports/'
-        }
+    reporters: ['dot', 'junit', 'json'],
+
+    reporterOptions: {
+        junit: {
+            outputDir: './reports/junit-results/'
+        },
+        json: {
+            outputDir: './reports/json-results/'
+        },
     },
-    
     //
     // Options to be passed to Mocha.
     // See the full list at http://mochajs.org/
@@ -177,10 +180,10 @@ exports.config = {
      * @param {Array.<Object>} capabilities list of capabilities details
      * @param {Array.<String>} specs List of spec file paths that are to be run
      */
-    before: function (capabilities, specs) {
-        expect = require('chai').expect;
-        should = require('chai').should();
-    },
+     before: function (capabilities, specs) {
+         expect = require('chai').expect;
+         should = require('chai').should();
+     },
     /**
      * Runs before a WebdriverIO command gets executed.
      * @param {String} commandName hook command name
@@ -188,7 +191,7 @@ exports.config = {
      */
     // beforeCommand: function (commandName, args) {
     // },
-
+    
     /**
      * Hook that gets executed before the suite starts
      * @param {Object} suite suite details
@@ -225,7 +228,7 @@ exports.config = {
      */
     // afterSuite: function (suite) {
     // },
-
+    
     /**
      * Runs after a WebdriverIO command gets executed
      * @param {String} commandName hook command name
