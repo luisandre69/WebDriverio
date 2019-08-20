@@ -10,6 +10,7 @@
   "license": "ISC",
   "devDependencies": {
     "chai": "^4.2.0",
+    "del": "^5.0.0",
     "mocha": "^5.2.0",
     "selenium": "^2.20.0",
     "selenium-standalone": "^6.15.3",
