@@ -1,73 +1,35 @@
-var ContactUs_Page = require("../PageObjects/ContactUs_Page.js");
+var ContactUs_Page = require("../pageObjects/ContactUs_Page.js");
 
-beforeEach(function () {
-    browser.url('/Contact-Us/contactus.html');
+beforeEach(function() {
+	browser.url('/Contact-Us/contactus.html');
 })
 
-describe('Test Contact Us form WebdriverUni', function () {
+describe('Test Contact Us form WebdriverUni', function() {
+  it('Should be able to submit a successful submission via contact us form', function(done) {
+  	ContactUs_Page.submitAllInformationViaContactUsForm('joe', 'Blogs', 'joe_blogs123@outlook.com', 'How are you?');
+  });
 
-    function setFirstName(firstName) {
-        return ContactUs_Page.firstName.setValue(firstName);
-    }
 
-    function setLastName(lastName) {
-        return ContactUs_Page.lastName.setValue(lastName);
-    }
+  it('Should not be able to submit a successful submission via contact us form as all fields are required', function(done) {
+  	ContactUs_Page.setFirstName('Mike');
+  	ContactUs_Page.setLastName('Woods');
+  	ContactUs_Page.setEmailAddress('mike_woods@mail.com');
+  	ContactUs_Page.clickSubmitButton();
+  	ContactUs_Page.confirmUnsuccessfulSubmission();
+  });
 
-    function setEmailAddress(emailAddress) {
-        return ContactUs_Page.emailAddress.setValue(emailAddress);
-    }
+  
+  it('Should not be able to submit a successful submission via contact us form as all fields are required', function(done) {
+  	ContactUs_Page.setFirstName('Sarah');
+  	ContactUs_Page.setEmailAddress('sarah_woods@mail.com');
+  	ContactUs_Page.clickSubmitButton();
+  	ContactUs_Page.confirmUnsuccessfulSubmission();
+  });
 
-    function setComments(comments) {
-        return ContactUs_Page.comments.setValue(comments);
-    }
-
-    function clickSubmitButton() {
-        return ContactUs_Page.submitButton.click();
-    }
-
-    function confirmSuccessfulSubmission() {
-        var validateSubmissionHeader = browser.waitUntil(function () {
-            return ContactUs_Page.successfulSubmissionHeader.getText() == 'Thank You for your Message!'
-        }, 3000)
-        expect(validateSubmissionHeader, 'Successful Submission Message does not Exist!').to.be.true;
-    }
-
-    function confirmUnsuccessfulSubmission() {
-        var validateSubmissionHeader = browser.waitUntil(function () {
-            return ContactUs_Page.unsuccessfulSubmissionHeader.getText() == 'Error: all fields are required'
-        }, 3000)
-        expect(ContactUs_Page.unsuccessfulSubmissionHeader.getText()).to.include('Error: all fields are required');
-    }
-
-    it('Should be able to submit a successful submission via contact us form', function (done) {
-        setFirstName('joe');
-        setLastName('Blogs');
-        setEmailAddress("joe_blogs123@outlook.com");
-        setComments("How are you?");
-        clickSubmitButton();
-        confirmSuccessfulSubmission();
-    });
-
-    it('Should not be able to submit a successful submission via contact us form as all fields are required', function (done) {
-        setFirstName('Mike');
-        setLastName('Woods');
-        setEmailAddress('mike_woods@mail.com');
-        clickSubmitButton();
-        confirmUnsuccessfulSubmission();
-    });
-
-    it('Should not be able to submit a successful submission via contact us form as all fields are required', function (done) {
-        setFirstName('Sarah');
-        setEmailAddress('sarah_woods@mail.com');
-        clickSubmitButton();
-        confirmUnsuccessfulSubmission();
-    });
-
-    it('Should not be able to submit a successful submission via contact us form as all fields are required', function (done) {
-        setLastName('Jomes');
-        setEmailAddress('sarah_Jomes@mail.com');
-        clickSubmitButton();
-        confirmUnsuccessfulSubmission();
-    });
+  it('Should not be able to submit a successful submission via contact us form as all fields are required', function(done) {
+  	ContactUs_Page.setLastName('Jomes');
+  	ContactUs_Page.setEmailAddress('sarah_Jomes@mail.com');
+  	ContactUs_Page.clickSubmitButton();
+  	ContactUs_Page.confirmUnsuccessfulSubmission();
+  });
 });
