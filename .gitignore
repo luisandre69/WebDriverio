@@ -95,3 +95,6 @@ reports/
 
 #allure
 allure-report/
+
+#jenkins
+jenkins/
