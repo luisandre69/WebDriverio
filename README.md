@@ -18,3 +18,7 @@ npm test -- --spec test.js
 #allure test
 allure generate location
 allure generate location --clean //cleans the folder
+
+#jenkins
+
+java -jar jenkins.war --enable-future-java --httpPort=5555
