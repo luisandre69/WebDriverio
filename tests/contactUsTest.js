@@ -1,6 +1,6 @@
 var ContactUs_Page = require("../pageObjects/ContactUs_Page.js");
 
-beforeEach(asyinc() => {
+beforeEach(async () => {
 	await browser.url('/Contact-Us/contactus.html');
 });
 
