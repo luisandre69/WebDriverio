@@ -14,6 +14,18 @@ class ContactUs_Page {
   get submitButton() {
     return $("[type='submit']");
   }
+  get successfulSubmissionHeader(){
+    return $("#contact_reply h1");
+  }
+  get unsuccessfulSubmissionHeader(){
+    return $("body");
+  }
+  get successfulSubmissionHeaderText(){
+    return this.successfulSubmissionHeader.getText(); //Thank you for your Message!
+  }
+  get unsuccessfulSubmissionHeaderText(){
+    return this.unsuccessfulSubmissionHeader.getText(); //Error: All Fields are required
+  }
 
   setFirstName(firstName) {
     return this.firstName.setValue(firstName);
@@ -53,8 +65,8 @@ class ContactUs_Page {
   }
 
   confirmSuccessfulSubmission() {
-    var successfulSubmissionHeader = "#contact_reply h1";
-    var validateSubmissionHeader = browser.waitUntil(function () {
+    var successfulSubmissionHeader = "";
+    var validateSubmissionHeader = browser.waitUntil( () => {
       return browser.getText(successfulSubmissionHeader) == 'Thank You for your Message!'
     }, 3000)
     expect(validateSubmissionHeader, 'Successful Submission Message does not Exist!').to.be.true;
@@ -62,7 +74,7 @@ class ContactUs_Page {
 
   confirmUnsuccessfulSubmission() {
     var unsuccessfulSubmissionHeader = "body";
-    var validateSubmissionHeader = browser.waitUntil(function () {
+    var validateSubmissionHeader = browser.waitUntil(() => {
       return browser.getText(unsuccessfulSubmissionHeader) == 'Error: all fields are required'
     }, 3000)
     expect(browser.getText(unsuccessfulSubmissionHeader)).to.include('Error: all fields are required');
