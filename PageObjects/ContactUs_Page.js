@@ -63,22 +63,6 @@ class ContactUs_Page {
     this.submitButton.click();
     this.confirmSuccessfulSubmission();
   }
-
-  confirmSuccessfulSubmission() {
-    var successfulSubmissionHeader = "";
-    var validateSubmissionHeader = browser.waitUntil( () => {
-      return browser.getText(successfulSubmissionHeader) == 'Thank You for your Message!'
-    }, 3000)
-    expect(validateSubmissionHeader, 'Successful Submission Message does not Exist!').to.be.true;
-  }
-
-  confirmUnsuccessfulSubmission() {
-    var unsuccessfulSubmissionHeader = "body";
-    var validateSubmissionHeader = browser.waitUntil(() => {
-      return browser.getText(unsuccessfulSubmissionHeader) == 'Error: all fields are required'
-    }, 3000)
-    expect(browser.getText(unsuccessfulSubmissionHeader)).to.include('Error: all fields are required');
-  }
 }
 
 module.exports = new ContactUs_Page();
