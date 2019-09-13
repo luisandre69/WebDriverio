@@ -9,21 +9,18 @@
   "author": "Luis Abreu",
   "license": "ISC",
   "devDependencies": {
-    "@wdio/cli": "^5.12.5",
-    "@wdio/dot-reporter": "^5.12.1",
-    "@wdio/local-runner": "^5.12.5",
-    "@wdio/mocha-framework": "^5.12.1",
-    "@wdio/selenium-standalone-service": "^5.12.1",
-    "@wdio/spec-reporter": "^5.12.1",
-    "@wdio/sync": "^5.12.3",
+    "@wdio/cli": "^5.4.17",
+    "@wdio/dot-reporter": "^5.6.0",
+    "@wdio/local-runner": "^5.6.2",
+    "@wdio/mocha-framework": "^5.6.0",
+    "@wdio/selenium-standalone-service": "^5.6.0",
+    "@wdio/sync": "^5.6.0",
     "chai": "^4.2.0",
-    "chromedriver": "^76.0.1",
     "del": "^3.0.0",
     "loglevel-plugin-prefix": "^0.8.4",
-    "mocha": "^6.2.0",
+    "mocha": "^6.0.1",
     "selenium-standalone": "^6.15.3",
     "sync-request": "^6.0.0",
-    "wdio-chromedriver-service": "^5.0.2",
     "webdriverio": "^5.12.5"
   }
 }

@@ -17,9 +17,7 @@ exports.config = {
     // WebdriverIO allows it to run your tests in arbitrary locations (e.g. locally or
     // on a remote machine).
     runner: 'local',
-    //
-    // Override default path ('/wd/hub') for chromedriver service.
-    path: '/',
+
     //
     // ==================
     // Specify Test Files
@@ -34,7 +32,7 @@ exports.config = {
     ],
     // Patterns to exclude.
     exclude: [
-        // 'path/to/excluded/files'
+        './pageObjects/*_Page.js'
     ],
     //
     // ============
@@ -64,11 +62,7 @@ exports.config = {
         // 5 instances get started at a time.
         maxInstances: 5,
         //
-        browserName: 'chrome',
-        // If outputDir is provided WebdriverIO can capture driver session logs
-        // it is possible to configure which logTypes to include/exclude.
-        // excludeDriverLogs: ['*'], // pass '*' to exclude all driver session logs
-        // excludeDriverLogs: ['bugreport', 'server'],
+        browserName: 'chrome'
     }],
     //
     // ===================
@@ -76,22 +70,11 @@ exports.config = {
     // ===================
     // Define all options that are relevant for the WebdriverIO instance here
     //
-    // Level of logging verbosity: trace | debug | info | warn | error | silent
+    // Level of logging verbosity: trace | debug | info | warn | error
     logLevel: 'trace',
     //
-    // Set specific log levels per logger
-    // loggers:
-    // - webdriver, webdriverio
-    // - @wdio/applitools-service, @wdio/browserstack-service, @wdio/devtools-service, @wdio/sauce-service
-    // - @wdio/mocha-framework, @wdio/jasmine-framework
-    // - @wdio/local-runner, @wdio/lambda-runner
-    // - @wdio/sumologic-reporter
-    // - @wdio/cli, @wdio/config, @wdio/sync, @wdio/utils
-    // Level of logging verbosity: trace | debug | info | warn | error | silent
-    // logLevels: {
-    //     webdriver: 'info',
-    //     '@wdio/applitools-service': 'info'
-    // },
+    // Warns when a deprecated command is used
+    deprecationWarnings: true,
     //
     // If you only want to run your tests until a specific amount of tests have failed use
     // bail (default is 0 - don't bail, run all tests).
@@ -118,7 +101,6 @@ exports.config = {
     // your test setup with almost no effort. Unlike plugins, they don't add new
     // commands. Instead, they hook themselves up into the test process.
     services: ['selenium-standalone'],
-
     // Framework you want to run your specs with.
     // The following are supported: Mocha, Jasmine, and Cucumber
     // see also: https://webdriver.io/docs/frameworks.html
@@ -127,14 +109,10 @@ exports.config = {
     // before running any tests.
     framework: 'mocha',
     //
-    // The number of times to retry the entire specfile when it fails as a whole
-    // specFileRetries: 1,
-    //
     // Test reporter for stdout.
     // The only one supported by default is 'dot'
     // see also: https://webdriver.io/docs/dot-reporter.html
     reporters: ['dot'],
-
     //
     // Options to be passed to Mocha.
     // See the full list at http://mochajs.org/
@@ -183,6 +161,7 @@ exports.config = {
      */
     // beforeCommand: function (commandName, args) {
     // },
+
     /**
      * Hook that gets executed before the suite starts
      * @param {Object} suite suite details
@@ -206,20 +185,20 @@ exports.config = {
      * afterEach in Mocha)
      */
     // afterHook: function () {
-    // }, 
+    // },
     /**
      * Function to be executed after a test (in Mocha/Jasmine) or a step (in Cucumber) starts.
      * @param {Object} test test details
      */
-    // afterTest: function(test) {
+    // afterTest: function (test) {
     // },
-
     /**
      * Hook that gets executed after the suite has ended
      * @param {Object} suite suite details
      */
     // afterSuite: function (suite) {
     // },
+
     /**
      * Runs after a WebdriverIO command gets executed
      * @param {String} commandName hook command name
@@ -247,8 +226,7 @@ exports.config = {
     // afterSession: function (config, capabilities, specs) {
     // },
     /**
-     * Gets executed after all workers got shut down and the process is about to exit. An error
-     * thrown in the onComplete hook will result in the test run failing.
+     * Gets executed after all workers got shut down and the process is about to exit.
      * @param {Object} exitCode 0 - success, 1 - fail
      * @param {Object} config wdio configuration object
      * @param {Array.<Object>} capabilities list of capabilities details

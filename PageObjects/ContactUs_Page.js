@@ -14,17 +14,17 @@ class ContactUs_Page {
   get submitButton() {
     return $("[type='submit']");
   }
-  get successfulSubmissionHeader(){
+  get successfulSubmissionHeader() {
     return $("#contact_reply h1");
   }
-  get unsuccessfulSubmissionHeader(){
+  get unsuccessfulSubmissionHeader() {
     return $("body");
   }
-  get successfulSubmissionHeaderText(){
-    return this.successfulSubmissionHeader.getText(); //Thank you for your Message!
+  get successfulSubmissionHeaderText() {
+    return this.successfulSubmissionHeader.getText(); //Thank You for your Message!
   }
-  get unsuccessfulSubmissionHeaderText(){
-    return this.unsuccessfulSubmissionHeader.getText(); //Error: All Fields are required
+  get unsuccessfulSubmissionHeaderText() {
+    return this.unsuccessfulSubmissionHeader.getText(); //Error: all fields are required Error: Invalid email address
   }
 
   setFirstName(firstName) {
@@ -61,7 +61,6 @@ class ContactUs_Page {
       this.comments.setValue(comments);
     }
     this.submitButton.click();
-    this.confirmSuccessfulSubmission();
   }
 }
 
